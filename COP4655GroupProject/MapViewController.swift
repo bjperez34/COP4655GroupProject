@@ -24,7 +24,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //set zoom level
+        //set zoom level for the region
         let span = MKCoordinateSpanMake(0.09, 0.09)
         let region = MKCoordinateRegion(center: officePoint, span: span)
         mapView.setRegion(region, animated: true)
@@ -33,7 +33,7 @@ class MapViewController: UIViewController {
         let office = MKPointAnnotation()
         
         //needs to be fixed due to length of pin being a limiter
-        office.title = "Street Address: <address> - Hours:<hours> Mo-Fr"
+        office.title = "<insert address of office>"
         office.coordinate = officePoint
         mapView.addAnnotation(office)
     }

@@ -17,11 +17,12 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet var BackButton: UIButton!
     var visit: Visit!
     
-    /* Because I embedded this in a separate navigation view, it lost the automatic "Back" functionality. So I have to manually dismiss it by calling the parent view controller and telling it to dismiss this view. */
+    /* Make the Back button manually dismiss it by calling the parent view controller and telling it to dismiss this view. */
     @IBAction func dismiss(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    //Whenever the view appears, set the data in it to that of the cell that was just clicked.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -33,7 +34,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
         notesField.text = visit.notes
     }
     
-    //Save the changes to the contact when the view disappears
+    //Save the changes to the visit when the view disappears
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -44,7 +45,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
             try VisitStore.instance.persistentContainer.viewContext.save()
         }
         catch _ {
-            exit(1)
+            exit(1) //this should not be reached
         }
         
     }

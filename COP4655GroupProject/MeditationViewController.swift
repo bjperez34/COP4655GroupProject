@@ -68,14 +68,12 @@ class MeditationViewController: UIViewController {
  
                 For instance, if we need to play the sound 5.4 times to play it for one minute, then we start it at 0.6 to play the last 0.4, and then play the entire sound 5 times after that.
             */
-            
-            
             let numReps = Int(seconds! / lengthOfSound)
             
             //Truncating remainder = modulo (%). In this version of Swift modulo is only defined for Ints
             let cutoff = (lengthOfSound) - (seconds!.truncatingRemainder(dividingBy: lengthOfSound))
             
-            //Set up the audio player
+            //Set up the audio player and play the sound
             self.audioPlayer.currentTime = cutoff
             self.audioPlayer.numberOfLoops = numReps
             self.audioPlayer.volume = 1.0

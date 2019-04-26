@@ -19,10 +19,6 @@ class VisitsViewController: UITableViewController {
         tableView.estimatedRowHeight = 65
     }
     
-    @IBAction func backButton(_ sender: Any?) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
@@ -47,11 +43,14 @@ class VisitsViewController: UITableViewController {
         return cell
     }
     
+    //Create an item and add it to the store
+    //The date will be the date the button was pressed. The date cannot be changed. Deletion not supported.
     func addNewItem() {
         let newItem = VisitStore.instance.createVisit(date:Date(), timeIn: "12:00pm", timeOut: "12:00pm", into: VisitStore.instance.persistentContainer.viewContext)
         VisitStore.instance.addVisit(newItem!)
     }
     
+    //Segue preparation - one for viewing an existing item, the other for creating a "default" new item and adding the prompt to it
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "displayDetails"?:
@@ -68,15 +67,4 @@ class VisitsViewController: UITableViewController {
             preconditionFailure("Unexpected segue identifier!")
         }
     }
-
-    //Gets date as a string, month/day only for shortness
-    func dateToString(_ date: Date) -> String {
-        let calendar = Calendar.current
-        let month = calendar.component(.month, from: date)
-        let day = calendar.component(.day, from: date)
-        let year = calendar.component(.year, from: date)
-        return month.description + "/" + day.description + "/" + year.description
-    }
-    
-    
 }
