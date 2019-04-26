@@ -17,7 +17,7 @@ class DetailViewController: UIViewController, UINavigationControllerDelegate, UI
     @IBOutlet var BackButton: UIButton!
     var visit: Visit!
     
-    /* Because I embedded this in a separate navigation view, it lost the automatic "Back" functionality. So I have to manually dismiss it by calling the parent view controller and telling it to dismiss this. */
+    /* Because I embedded this in a separate navigation view, it lost the automatic "Back" functionality. So I have to manually dismiss it by calling the parent view controller and telling it to dismiss this view. */
     @IBAction func dismiss(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
